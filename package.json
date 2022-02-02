@@ -1,0 +1,19 @@
+{
+  "name": "interwoven",
+  "version": "1.0.0",
+  "description": "Get Stories from Real People",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Austin-Earl-Private/Interwoven.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Austin-Earl-Private/Interwoven/issues"
+  },
+  "homepage": "https://github.com/Austin-Earl-Private/Interwoven#readme"
+}
