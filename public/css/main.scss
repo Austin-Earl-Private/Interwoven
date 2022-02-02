@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+
+//Whole Site
+* {
+    box-sizing: border-box;
+    font-family: 'Cormorant Garamond', serif;
+}
+h1{
+    font-size: 24px;
+    text-transform: uppercase;
+}
+body {
+    padding: 0;
+    margin: 0;
+}
+p{
+    line-height: 2em;
+}
+
+//main page
+form{
+    padding: 1em;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+}
+input, select{
+    width: 300px;
+    border: 0;
+    border-bottom: 1px solid black;
+    padding: .6em;
+    margin: 1em;
+}
+select{
+    font-size: 1em;
+}
+
+
+a:hover, input:focus, select:focus{
+    outline: none;
+    border-bottom: 2px solid #D20F1C;
+}
+textarea:focus{
+    outline: none;
+    border: 2px solid #D20F1C;
+}
+.btn{
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+}
+.search-icon{
+    width: 25px;
+    height: auto;
+}
+.world-map{
+    width: 100vw;
+    height: auto;
+}
+.image-path:hover{
+    //fill: #EEF0F2;
+    fill: #DADDD8;
+  }
+
+  //home
+  .home-style{
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .logo-2{
+      padding-left: 1em;
+      width: 60px;
+      height: auto;
+  }
+  a{
+      text-transform: uppercase;
+      text-decoration: none;
+      color: black;
+      margin: 1em;
+  }
+  //nav
+  nav{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+  }
+  nav div{
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: flex-end;
+      align-content: flex-end;
+      height: 3.3em;
+  }
+  //not working for some reason. I want the page that we are on to have red text as the color
+//   a .active{
+//       color: #D20F1C !important;
+//   }
+
+//form pages: signup, login
+.form-page{
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.form-page h1, .form-page p{
+    text-align: center;
+}
+#submitButton{
+    background-color: #D20F1C;
+    border: none;
+    color: #FAFAFF;
+    cursor: pointer;
+    font-size: 1.2em;
+    text-transform: uppercase;
+}
+
