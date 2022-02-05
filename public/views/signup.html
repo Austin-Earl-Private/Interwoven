@@ -27,7 +27,8 @@
         <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
         <input type="email" id="email" name="userEmail" placeholder="Email" required>
-        <input type="password" id="password" name="userPassword" placeholder="Password" required>
+        <input type="password" id="password" name="userPassword" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+        <!-- password must contain at least one number,one uppercase letter, one lowercase letter and be at least 8 or more characters -->
         <!-- confirm password -->
         <!-- <input type="password" id="password" name="userPassword" placeholder="Password" required> -->
         <input id="submitButton" type="submit">
