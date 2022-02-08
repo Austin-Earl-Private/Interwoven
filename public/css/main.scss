@@ -5,7 +5,7 @@
     box-sizing: border-box;
     font-family: 'Cormorant Garamond', serif;
 }
-h1{
+h1 {
     font-size: 24px;
     text-transform: uppercase;
 }
@@ -13,69 +13,63 @@ body {
     padding: 0;
     margin: 0;
 }
-p{
+p {
     line-height: 2em;
 }
 
 //main page
-form{
+form {
     padding: 1em;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     justify-content: center;
 }
-input, select{
+input, select {
     width: 300px;
     border: 0;
     border-bottom: 1px solid black;
     padding: .6em;
     margin: 1em;
 }
-select{
+select {
     font-size: 1em;
 }
 
 
-a:hover, input:focus, select:focus{
+a:hover, input:focus, select:focus {
     outline: none;
     border-bottom: 2px solid #D20F1C;
 }
-textarea:focus{
+textarea:focus {
     outline: none;
     border: 2px solid #D20F1C;
 }
-.btn{
-    background-color: white;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-}
-.search-icon{
+.search-icon {
     width: 25px;
     height: auto;
 }
-.world-map{
+.world-map {
     width: 100vw;
     height: auto;
 }
-.image-path:hover{
+.image-path:hover {
     //fill: #EEF0F2;
     fill: #DADDD8;
   }
 
   //home
-  .home-style{
+  .home-style {
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
   }
-  .logo-2{
+  .logo-2 {
       padding-left: 1em;
       width: 60px;
       height: auto;
   }
-  a{
+  a {
       text-transform: uppercase;
       text-decoration: none;
       color: black;
@@ -87,7 +81,7 @@ textarea:focus{
       flex-flow: row nowrap;
       justify-content: space-between;
   }
-  nav div{
+  nav div {
       display: flex;
       flex-flow: row nowrap;
       justify-content: flex-end;
@@ -100,25 +94,79 @@ textarea:focus{
 //   }
 
 //form pages: signup, login
-.form-page{
+.form-page {
     max-width: 500px;
     margin-left: auto;
     margin-right: auto;
 }
-.form-page h1, .form-page p{
+.form-page h1, .form-page p {
     text-align: center;
 }
-#submitButton{
+#submitButton, button {
     background-color: #D20F1C;
     border: none;
     color: #FAFAFF;
     cursor: pointer;
     font-size: 1.2em;
     text-transform: uppercase;
+    border-radius: 5px;
 }
 
-.story{
+//profile page
+.profile{
+    padding: 1em;
+}
+.profile h2{
+    text-align: center;
+}
+.story {
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
+}
+.add-tags input{
+    border: none !important;
+    border-bottom: none !important;
+    padding: 0 !important;
+    margin-left: 1em !important;
+    max-width: 100px !important;
+}
+.add-tags ul {
+    list-style: none;
+    text-transform: uppercase;
+    display: flex;
+    flex-flow: row wrap;
+    max-width: 600px;
+    border: 1px solid #D20F1C;
+    padding: 1em;
+}
+.add-tags li {
+    margin: .2em .2em;
+    padding: .2em 1em;
+    background-color: #FAFAFF;
+    border-radius: 5px;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    border-radius: 5px;
+}
+.x {
+    height: 12px;
+    width: auto;
+    cursor: pointer;
+    margin-left: 1em;
+}
+
+//admin portion
+.storyForApproval{
+    border: 1px solid #DADDD8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+.storyForApproval div{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }

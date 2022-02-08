@@ -247,35 +247,17 @@ if (story === null){
             <option value="Guadeloupe">Guadeloupe</option>
             <option value="Fiji">Fiji</option>
         </select>
-        <textarea rows="20" cols="200"></textarea>
+        <textarea rows="20" cols="100"></textarea>
         <input id="submitButton" type="submit">
     </form>
     `;
     
-} else if (story != null && feeback){
-    //display feedback, story, and update button to resubmit story
+// } else if (story != null && feeback){
+//     //display feedback, story, and update button to resubmit story
 } else if (story){
     //display story delete options
 } else if (userLevel === 3){
-    //list of stories marked for review with abilty to approve or send feedback
-    //list first name, last name, country, hidden value of their id
-    //click on story
-    //load new page with full story and option to approve or send feedback
+    //list first name, last name, country, story for each story marked for approval
+    
 
 }
-//if story = yes
-//if story = yes with feeback
-//if no story
-//if admin
-
-
-
-
-//decide what profile page to display to a user
-
-//check if a user has a level 1 or level 3 access.
-//get the user level from the database
-//if they have level 1, show them the standard profile page
-//if they have a level 3, show them the admin page
-
-//populate the information on each page with the information of the client
