@@ -81,3 +81,36 @@ function catchError(error, next) {
         next(err);
     }
 }
+
+exports.changePassword = (res, req, next) =>{
+   const userId =  req.userId;
+   const oldPassword = req.body.oldPassword;
+   const newPassword = req.body.newPassword;
+
+    let foundUser;
+    User.findById(userId).then((user) => {
+        if (!user) {
+            const error = new Error('User does not exist.');
+            error.statusCode = 401;
+            throw error;
+        }
+        foundUser = user;
+        return bcrypt.compare(oldPassword, user.password);
+    }).then((isEqual) =>{
+        if (!isEqual) {
+            const error = new Error('Passwords do not match.');
+            error.statusCode = 400;
+            throw error;
+        }
+        return bcrypt.hash(newPassword, 12) 
+    }).then((hash) =>{
+        foundUser.password = hash;
+        return foundUser.save();
+    }).then((result) =>{
+        res.status(200).json({message : 'Password sucessfuly changed.'})
+    }).catch((error)=>{
+        error.statusCode = 500;
+        next(error)
+    });
+
+}
