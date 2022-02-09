@@ -26,7 +26,7 @@ Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1
 
 {
     "oldPassword":"kdfkiwkl#9023kldlk",
-    "newPassword":"kdfkiwkl#9023kldlk2"
+    "newPassword":"kdfkiwkl#9023kldlk"
 }
 
 ###

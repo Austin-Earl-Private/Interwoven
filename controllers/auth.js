@@ -84,9 +84,8 @@ function catchError(err, next) {
     }
 }
 
-exports.changePassword = (res, req, next) => {
+exports.changePassword = (req, res, next) => {
     const userId = req.userId;
-    console.log(req.body);
     const oldPassword = req.body.oldPassword;
     const newPassword = req.body.newPassword;
 
