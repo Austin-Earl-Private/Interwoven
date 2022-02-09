@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const searchRoutes = require('./routes/search');
 
 const mongoose = require('mongoose');
 const app = express();
@@ -14,6 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static('public'));
+app.use(searchRoutes);
 app.use((error, req, res, next) => {
     console.log(error);
     const statusCode = error.statusCode || 500;

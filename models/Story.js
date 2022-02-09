@@ -7,15 +7,6 @@ const storySchema = new Schema(
             type: String,
             required: true,
         },
-        imageUrl: {
-            type: String,
-            required: true,
-        },
-        tags: [
-            {
-                type: String,
-            },
-        ],
         content: {
             type: String,
             required: true,
