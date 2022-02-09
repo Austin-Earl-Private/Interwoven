@@ -14,9 +14,13 @@ function displayAllData(data) {
 }
 //password?
 
+var country;
+var firstName;
+var lastName; 
 var story = null;
+var userName = firstName + " " + lastName;
 var feedback;
-var userLevel;
+var userLevel = "admin";
 //case statement for the following:
 if (story === null){
     //display the profile with form to add a story + country + submit for review
@@ -251,13 +255,30 @@ if (story === null){
         <input id="submitButton" type="submit">
     </form>
     `;
-    
-// } else if (story != null && feeback){
-//     //display feedback, story, and update button to resubmit story
 } else if (story){
     //display story delete options
-} else if (userLevel === 3){
+    document.getElementById('profileSpecifics').innerHTML = ` 
+    <div class="storyForApproval">
+        <div>
+            <h3>Name: ${userName}</h3>
+            <h3>Country: ${country}</h3>
+        </div>
+        <p id="story">${story}</p>
+        <input id="submitButton" type="submit" value="Delete Story">
+        </div>
+    `;
+} else if (userLevel === "admin"){
     //list first name, last name, country, story for each story marked for approval
-    
+    document.getElementById('profileSpecifics').innerHTML = `
+
+    <div class="storyForApproval">
+        <div>
+            <h3>Name: ${userName}</h3>
+            <h3>Country: ${country}</h3>
+        </div>
+        <p id="story">${story}</p>
+        <input id="submitButton" type="submit" value="Approve Post">
+</div>
+  `;
 
 }
