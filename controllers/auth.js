@@ -51,18 +51,20 @@ exports.login = (req, res, next) => {
         });
 };
 
-exports.signUp = (res, res, next) => {
+exports.signUp = (req, res, next) => {
     const email = req.body.email;
     const name = req.body.name;
     const password = req.body.password;
     bcrypt
         .hash(password, 12)
         .then((hash) => {
+            console.log(hash);
             const user = new User({
                 email: email,
                 name: name,
                 password: hash,
             });
+            console.log('herer');
             return user.save();
         })
         .then((result) => {
@@ -74,7 +76,7 @@ exports.signUp = (res, res, next) => {
         .catch((err) => catchError(err));
 };
 
-function catchError(error, next) {
+function catchError(err, next) {
     if (!err.statusCode) {
         err.statusCode = 500;
     } else {
@@ -82,35 +84,40 @@ function catchError(error, next) {
     }
 }
 
-exports.changePassword = (res, req, next) =>{
-   const userId =  req.userId;
-   const oldPassword = req.body.oldPassword;
-   const newPassword = req.body.newPassword;
+exports.changePassword = (res, req, next) => {
+    const userId = req.userId;
+    console.log(req.body);
+    const oldPassword = req.body.oldPassword;
+    const newPassword = req.body.newPassword;
 
     let foundUser;
-    User.findById(userId).then((user) => {
-        if (!user) {
-            const error = new Error('User does not exist.');
-            error.statusCode = 401;
-            throw error;
-        }
-        foundUser = user;
-        return bcrypt.compare(oldPassword, user.password);
-    }).then((isEqual) =>{
-        if (!isEqual) {
-            const error = new Error('Passwords do not match.');
-            error.statusCode = 400;
-            throw error;
-        }
-        return bcrypt.hash(newPassword, 12) 
-    }).then((hash) =>{
-        foundUser.password = hash;
-        return foundUser.save();
-    }).then((result) =>{
-        res.status(200).json({message : 'Password sucessfuly changed.'})
-    }).catch((error)=>{
-        error.statusCode = 500;
-        next(error)
-    });
-
-}
+    User.findById(userId)
+        .then((user) => {
+            if (!user) {
+                const error = new Error('User does not exist.');
+                error.statusCode = 401;
+                throw error;
+            }
+            foundUser = user;
+            return bcrypt.compare(oldPassword, user.password);
+        })
+        .then((isEqual) => {
+            if (!isEqual) {
+                const error = new Error('Passwords do not match.');
+                error.statusCode = 400;
+                throw error;
+            }
+            return bcrypt.hash(newPassword, 12);
+        })
+        .then((hash) => {
+            foundUser.password = hash;
+            return foundUser.save();
+        })
+        .then((result) => {
+            res.status(200).json({ message: 'Password sucessfuly changed.' });
+        })
+        .catch((error) => {
+            error.statusCode = 500;
+            next(error);
+        });
+};

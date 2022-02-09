@@ -15,7 +15,7 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        isMod: { type: Boolean, default: false },
+        isMod: { type: Boolean, required: true },
 
         // stories: [
         //     {
@@ -27,4 +27,4 @@ const userSchema = new Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('PasswordToken', userSchema);

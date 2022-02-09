@@ -16,6 +16,9 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(searchRoutes);
+
+const authRouter = require('./routes/auth');
+app.use('/auth', authRouter);
 app.use((error, req, res, next) => {
     console.log(error);
     const statusCode = error.statusCode || 500;
