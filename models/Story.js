@@ -12,9 +12,8 @@ const storySchema = new Schema(
             required: true,
         },
         creator: {
-            type: Schema.Types.ObjectId,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
-            required: true,
         },
         country_code: String,
         approved: Boolean,
