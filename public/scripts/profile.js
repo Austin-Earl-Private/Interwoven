@@ -269,6 +269,7 @@ if (story === null){
     `;
 } else if (userLevel === "admin"){
     //list first name, last name, country, story for each story marked for approval
+    //WE NEED TO LOOP THROUGH EACH STORY
     document.getElementById('profileSpecifics').innerHTML = `
 
     <div class="storyForApproval">
