@@ -46,18 +46,59 @@
 // }
 // console.log(ids);
 
+import ids from "../countries.js";
+
 document.addEventListener('click', doThing);
 
 function doThing(event) {
+
+    let id;
     if (event.srcElement.id == ""){
         //if no id, go to parent element and get that id
-        console.log(event.srcElement.parentElement.id);
+        id = event.srcElement.parentElement.id;
     }
-    else{
-        console.log(event.srcElement.id);
+    else {
+        id = event.srcElement.id
     }
-    
+
+    ids.find((currentId) => {
+        if(currentId.countryId == id) {
+            console.log(id);
+
+            // Now we just do a fetch call with query parameters or change it to post or... yeah
+        }
+    });
 }
 
 //change the fill color of the path if there are stories from that country
 //populate the next page using the country reaching back to the database
+
+
+
+
+// document.addEventListener('click', doThing);
+
+// async function doThing(event) {
+//     let inputId = await event.srcElement.id;
+//     setTimeout(function () {
+//         if (inputId == "") {
+//             console.log(inputId.parent);
+//         }
+//         else {
+//             for (const id in ids) {
+//                 const countryId = ids[id].countryId;
+    
+                
+                
+//                 if(countryId == inputId) {
+//                     // We have a valid country ID
+//                     console.log(inputId);
+//                 }
+//             }
+//         }
+//     }, 1000);
+    
+// }
+
+// //change the fill color of the path if there are stories from that country
+// //populate the next page using the country reaching back to the database
