@@ -1,5 +1,5 @@
-{
-    "countries": [{
+export const ids = [
+        {
             "countryId": "Afghanistan",
             "countryName": "Afghanistan"
         },
@@ -688,4 +688,4 @@
             "countryName": "Fiji"
         }
     ]
-}
+export default ids;
