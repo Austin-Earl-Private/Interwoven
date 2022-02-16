@@ -1,9 +1,5 @@
 function signUp() {
-    // e.preventDefault();
-    // const form = document.querySelector('#login');
-    // const inputs = form.elements;
-    // const email = inputs['email'];
-    // const password = inputs['password'];
+    
     const firstName = document.querySelector('#firstName').value;
     const lastName = document.querySelector('#lastName').value;
     const email = document.querySelector('#email').value;

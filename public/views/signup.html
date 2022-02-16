@@ -24,7 +24,7 @@
     <h1>Sign Up</h1>
     <p>Everyone has a story. We want to hear yours. Sign up to create a profile and share your story on Interwoven. The world needs to hear your story. <br> Password must have at least one number, one uppercase letter, one lowercase letter and be at least 8 characters</p>
     <script src="../scripts/signUp.js"></script>
-    <div id="signup">
+    <form id="signup">
         <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
         <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
         <input type="email" id="email" name="email" placeholder="Email" required>
@@ -33,7 +33,7 @@
         <!-- confirm password -->
         <!-- <input type="password" id="password" name="userPassword" placeholder="Password" required> -->
         <input id="submitButton" type="submit" onclick="signUp()">
-    </div>
+    </form>
 </div>
 </body>
 </html>
