@@ -6,7 +6,7 @@ const { v4: uuidv4 } = require('uuid');
 const searchRoutes = require('./routes/search');
 const adminController = require('./routes/admin');
 const storyRoutes = require('./routes/story');
-
+const userRoutes = require('./routes/user');
 const mongoose = require('mongoose');
 const app = express();
 
@@ -18,6 +18,8 @@ app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(searchRoutes);
+app.use(userRoutes);
+
 app.use('/admin', adminController);
 const authRouter = require('./routes/auth');
 app.use('/auth', authRouter);
