@@ -63,7 +63,11 @@ function doThing(event) {
 
     ids.find((currentId) => {
         if(currentId.countryId == id) {
-            console.log(id);
+            let searchURL = `http://localhost:8080/search?country=${id}`;
+            let countryResults = fetch(searchURL)
+            .then((res) => {
+                res.json();
+            });
 
             // Now we just do a fetch call with query parameters or change it to post or... yeah
         }
