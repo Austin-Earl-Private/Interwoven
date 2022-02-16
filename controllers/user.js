@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Story = require('../models/Story');
 const User = require('../models/User');
 exports.getProfile = (req, res, next) => {
-    const userId = req.body.userId;
+    const userId = req.query.userId;
     let foundUser;
     User.findById(userId)
         .then((user) => {

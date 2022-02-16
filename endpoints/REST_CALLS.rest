@@ -30,12 +30,12 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:8080/profile
-Content-Type: application/json
+GET http://localhost:8080/profile?userId=62032b37c911458572150e9f
+# Content-Type: application/json
 
-{
-    "userId":"62032b37c911458572150e9f"
-}
+# {
+#     "userId":"62032b37c911458572150e9f"
+# }
 
 ###
 POST http://localhost:8080/auth/changePassword
