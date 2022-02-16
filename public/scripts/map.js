@@ -49,7 +49,7 @@
 import ids from "../countries.js";
 
 document.addEventListener('click', doThing);
-
+let countryResults
 function doThing(event) {
 
     let id;
@@ -63,8 +63,18 @@ function doThing(event) {
 
     ids.find((currentId) => {
         if(currentId.countryId == id) {
-            console.log(id);
+            let searchURL = `http://localhost:8080/search?country=${id}`;
+            fetch(searchURL)
+            .then((res) => {
+               return  res.json();
+            })
+            .then((body) => {
+                console.log(body)
+                const countryStories = body
+                countryResults = body
+            });
 
+            window.location.href = '../views/results.html';
             // Now we just do a fetch call with query parameters or change it to post or... yeah
         }
     });
