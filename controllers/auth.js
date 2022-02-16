@@ -58,7 +58,9 @@ exports.login = (req, res, next) => {
 
 exports.signUp = (req, res, next) => {
     const email = req.body.email;
-    const name = req.body.name;
+    const fname = req.body.first_name;
+    const lname = req.body.last_name;
+
     const password = req.body.password;
     bcrypt
         .hash(password, 12)
@@ -66,7 +68,8 @@ exports.signUp = (req, res, next) => {
             console.log(hash);
             const user = new User({
                 email: email,
-                name: name,
+                first_name: fname,
+                last_name: lname,
                 password: hash,
             });
             console.log('herer');
