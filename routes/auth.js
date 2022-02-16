@@ -4,7 +4,7 @@ const authController = require('../controllers/auth');
 const jwt = require('../middleware/jwt-check');
 
 router.post('/sign-up', authController.signUp);
-router.post('/login', jwt, authController.login);
+router.post('/login', authController.login);
 
 router.post('/changePassword', jwt, authController.changePassword);
 

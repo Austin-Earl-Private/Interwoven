@@ -6,6 +6,11 @@ const varList = require('../utils/variables');
 exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    if (!email || !password) {
+        const error = new Error('Can not have null values');
+        error.statusCode = 401;
+        throw error;
+    }
 
     let foundUser;
     User.findOne({ email: email })
