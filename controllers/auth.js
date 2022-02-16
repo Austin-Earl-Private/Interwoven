@@ -36,7 +36,7 @@ exports.login = (req, res, next) => {
             );
 
             res.status(200).json({
-                message: 'Logged in succefully.',
+                message: 'Logged in successfully.',
                 userId: foundUser._id.toString(),
                 isMod: foundUser.isMod,
                 token: token,

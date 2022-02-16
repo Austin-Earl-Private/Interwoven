@@ -8,7 +8,16 @@ Content-Type: application/json
 
 
 ###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
 
+{
+    "email":"test2@email.com",
+    "password":"pa$$w0rd"
+}
+
+
+###
 POST http://localhost:8080/auth/sign-up
 Content-Type: application/json
 
@@ -19,7 +28,15 @@ Content-Type: application/json
 }
 
 ###
+POST http://localhost:8080/auth/sign-up
+Content-Type: application/json
 
+{
+    "email":"test2@email.com",
+    "password":"pa$$w0rd",
+    "name":"tanner"
+}
+###
 POST http://localhost:8080/auth/changePassword
 Content-Type: application/json
 Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwidXNlcklkIjoiNjIwMzJiMzdjOTExNDU4NTcyMTUwZTlmIiwiaXNNb2QiOmZhbHNlLCJpYXQiOjE2NDQzNzQ4NTMsImV4cCI6MTY0NDM3ODQ1M30.6zt0Kp3jsxh6ieBOcpHXeTUrdQMOcUfdPaciqZr1Mvw
