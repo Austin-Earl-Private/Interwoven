@@ -22,20 +22,13 @@ POST http://localhost:8080/auth/sign-up
 Content-Type: application/json
 
 {
-    "email":"test@email.com",
-    "password":"kdfkiwkl#9023kldlk",
-    "name":"testers"
-}
-
-###
-POST http://localhost:8080/auth/sign-up
-Content-Type: application/json
-
-{
-    "email":"test2@email.com",
+    "email":"test3@email.com",
     "password":"pa$$w0rd",
-    "name":"tanner"
+    "first_name":"tanner",
+    "last_name":"LastNamesss"
 }
+
+
 ###
 POST http://localhost:8080/auth/changePassword
 Content-Type: application/json
