@@ -1,12 +1,13 @@
 const Story = require('../models/Story');
 
 exports.getNonApproved = (req, res, next) => {
+    console.log('request to get non approved');
     if (!req.isMod) {
         res.status(401).json({ message: 'You are not mod, Get out!' });
         return;
     }
     Story.find({ approved: false })
-        .populate('creator', ['name'])
+        .populate('creator', ['first_name', 'last_name'])
         // .select('-creator._id -creator.password -creator.isMod')
         // .select('-creator.password')
         // .select('-creator.isMod')

@@ -37,11 +37,21 @@ function getprofileUnapprovedStories(name) {
 
 getPublicProfile();
 
-function getUnaprovedStories() {}
-//in the profile we need
-//first name
-//last name
-//email
+function getUnaprovedStories() {
+    fetch(`http://localhost:8080/admin/getNonApprovedPosts`, {
+        headers: {
+            Authorization: `Bear ${window.localStorage.getItem('token')}`,
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            displayStoriesToBeApproved(data.stories);
+            // displayApprovedStories(data.stories, name);
+        });
+}
+getUnaprovedStories();
+
 function displayFirstName(name) {
     const span = document.querySelector('#userFirstname');
     span.textContent = name;
@@ -60,18 +70,43 @@ function displayAllData(data) {
     displayEmail(data.userEmail);
 }
 
-function displayApprovedStories(storyList, name) {
-    displayStoryList(storyList, '#approvedStories', name);
+function displayApprovedStories(storyList) {
+    displayStoryList(storyList, '#approvedStories', false);
 }
-function displayApprovedStories(storyList, name) {
-    displayStoryList(storyList, '#unapprovedStories', name);
+function displayApprovedStories(storyList) {
+    displayStoryList(storyList, '#unapprovedStories', false);
 }
-function displayStoryList(storyList, elementIdString, name) {
+function displayStoriesToBeApproved(storyList) {
+    displayStoryList(storyList, '#storyForApproval', 'NO NAME YET', true);
+}
+
+function approveStory(storyId) {
+    console.log('Approving story for ' + storyId);
+    fetch(`http://localhost:8080/admin/approveStory`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bear ${window.localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ storyId: storyId }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            // displayApprovedStories(data.stories, name);
+            location.reload();
+        });
+}
+function displayStoryList(storyList, elementIdString, isForAprroval) {
     const approvedContainer = document.querySelector(elementIdString);
 
     for (story of storyList) {
         const storyContainer = document.createElement('div');
-        // const story = storyList[0];
+        const approveButton = document.createElement('button');
+        approveButton.textContent = 'Approve Story';
+        approveButton.onclick = () => {
+            approveStory(story._id);
+        };
         const headerDiv = document.createElement('div');
         const nameHeader = document.createElement('h3');
         const nameSpan = document.createElement('span');
@@ -79,7 +114,8 @@ function displayStoryList(storyList, elementIdString, name) {
         const countrySpan = document.createElement('span');
         const storyContent = document.createElement('p');
         countrySpan.textContent = 'USSUSUSUSUS';
-        nameSpan.textContent = name;
+        nameSpan.textContent =
+            story.creator.first_name + ' ' + story.creator.last_name;
         nameHeader.textContent = 'Name: ';
         countryHeader.textContent = 'Country: ';
         nameHeader.appendChild(nameSpan);
@@ -89,6 +125,9 @@ function displayStoryList(storyList, elementIdString, name) {
         headerDiv.appendChild(countryHeader);
         storyContainer.appendChild(headerDiv);
         storyContainer.appendChild(storyContent);
+        if (isForAprroval) {
+            storyContainer.appendChild(approveButton);
+        }
         approvedContainer.appendChild(storyContainer);
     }
 }

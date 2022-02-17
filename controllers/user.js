@@ -11,7 +11,10 @@ exports.getProfile = (req, res, next) => {
             }
 
             foundUser = user;
-            return Story.find({ creator: user._id, approved: true });
+            return Story.find({ creator: user._id, approved: true }).populate(
+                'creator',
+                ['first_name', 'last_name']
+            );
         })
         .then((storyList) => {
             return res.status(200).json({
