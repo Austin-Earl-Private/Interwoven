@@ -1,28 +1,147 @@
-const getData = async () => {
-    const data = await apiFetch('http://localhost:8080/interwoven');
-    displayAllData(data);
+// const countries = require('../countries');
+const getPublicProfile = async () => {
+    fetch(
+        `http://localhost:8080/profile?userId=${window.localStorage.getItem(
+            'userId'
+        )}`
+    )
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            displayFirstName(data.first_name);
+            displayLastName(data.last_name);
+            displayEmail(data.email);
+            displayApprovedStories(
+                data.stories,
+                data.first_name + ' ' + data.last_name
+            );
+            getprofileUnapprovedStories(data.first_name + ' ' + data.last_name);
+        });
+    // const data = await apiFetch('http://localhost:8080/interwoven');
+    // displayAllData(data);
 };
 
-//in the profile we need
-//first name
-//last name
-//email
+function getprofileUnapprovedStories(name) {
+    fetch(`http://localhost:8080/unaprovedStories`, {
+        headers: {
+            Authorization: `Bear ${window.localStorage.getItem('token')}`,
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+
+            displayApprovedStories(data.stories, name);
+        });
+}
+
+getPublicProfile();
+
+function getUnaprovedStories() {
+    fetch(`http://localhost:8080/admin/getNonApprovedPosts`, {
+        headers: {
+            Authorization: `Bear ${window.localStorage.getItem('token')}`,
+        },
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            displayStoriesToBeApproved(data.stories);
+            // displayApprovedStories(data.stories, name);
+        });
+}
+getUnaprovedStories();
+
+function displayFirstName(name) {
+    const span = document.querySelector('#userFirstname');
+    span.textContent = name;
+}
+function displayLastName(name) {
+    const span = document.querySelector('#userLastname');
+    span.textContent = name;
+}
+function displayEmail(email) {
+    const span = document.querySelector('#userEmail');
+    span.textContent = email;
+}
 function displayAllData(data) {
     displayFirstName(data.firstName);
     displayLastName(data.lastName);
     displayEmail(data.userEmail);
 }
+
+function displayApprovedStories(storyList) {
+    displayStoryList(storyList, '#approvedStories', false);
+}
+function displayApprovedStories(storyList) {
+    displayStoryList(storyList, '#unapprovedStories', false);
+}
+function displayStoriesToBeApproved(storyList) {
+    displayStoryList(storyList, '#storyForApproval', 'NO NAME YET', true);
+}
+
+function approveStory(storyId) {
+    console.log('Approving story for ' + storyId);
+    fetch(`http://localhost:8080/admin/approveStory`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bear ${window.localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ storyId: storyId }),
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            console.log(data);
+            // displayApprovedStories(data.stories, name);
+            location.reload();
+        });
+}
+function displayStoryList(storyList, elementIdString, isForAprroval) {
+    const approvedContainer = document.querySelector(elementIdString);
+
+    for (story of storyList) {
+        const storyContainer = document.createElement('div');
+        const approveButton = document.createElement('button');
+        approveButton.textContent = 'Approve Story';
+        approveButton.onclick = () => {
+            approveStory(story._id);
+        };
+        const headerDiv = document.createElement('div');
+        const nameHeader = document.createElement('h3');
+        const nameSpan = document.createElement('span');
+        const countryHeader = document.createElement('h3');
+        const countrySpan = document.createElement('span');
+        const storyContent = document.createElement('p');
+        countrySpan.textContent = 'USSUSUSUSUS';
+        nameSpan.textContent =
+            story.creator.first_name + ' ' + story.creator.last_name;
+        nameHeader.textContent = 'Name: ';
+        countryHeader.textContent = 'Country: ';
+        nameHeader.appendChild(nameSpan);
+        countryHeader.appendChild(countrySpan);
+        storyContent.textContent = story.content;
+        headerDiv.appendChild(nameHeader);
+        headerDiv.appendChild(countryHeader);
+        storyContainer.appendChild(headerDiv);
+        storyContainer.appendChild(storyContent);
+        if (isForAprroval) {
+            storyContainer.appendChild(approveButton);
+        }
+        approvedContainer.appendChild(storyContainer);
+    }
+}
 //password?
 
 var country;
 var firstName;
-var lastName; 
+var lastName;
 var story = null;
-var userName = firstName + " " + lastName;
+var userName = firstName + ' ' + lastName;
 var feedback;
-var userLevel = "admin";
+var userLevel = 'admin';
 //case statement for the following:
-if (story === null){
+if (story === null) {
     //display the profile with form to add a story + country + submit for review
     document.getElementById('profileSpecifics').innerHTML = `
     <h2>Submit Your Story</h2>
@@ -255,7 +374,7 @@ if (story === null){
         <input id="submitButton" type="submit">
     </form>
     `;
-} else if (story){
+} else if (story) {
     //display story delete options
     document.getElementById('profileSpecifics').innerHTML = ` 
     <div class="storyForApproval">
@@ -267,7 +386,7 @@ if (story === null){
         <input id="submitButton" type="submit" value="Delete Story">
         </div>
     `;
-} else if (userLevel === "admin"){
+} else if (userLevel === 'admin') {
     //list first name, last name, country, story for each story marked for approval
     //WE NEED TO LOOP THROUGH EACH STORY
     document.getElementById('profileSpecifics').innerHTML = `
@@ -281,5 +400,4 @@ if (story === null){
         <input id="submitButton" type="submit" value="Approve Post">
 </div>
   `;
-
 }
