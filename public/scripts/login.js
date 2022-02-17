@@ -23,6 +23,7 @@ function onlogin() {
             localStorage.setItem('token', data.token);
             localStorage.setItem('isMod', data.isMod);
             localStorage.setItem('userId', data.userId);
+            localStorage.setItem('isLoggedin', true);
             window.location.href = 'http://localhost:8080/views/profile.html';
         });
     return false;
