@@ -22,6 +22,7 @@ function onlogin() {
             console.log(data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('isMod', data.isMod);
+            localStorage.setItem('userId', data.userId);
             window.location.href = 'http://localhost:8080/views/profile.html';
         });
     return false;

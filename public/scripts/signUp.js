@@ -13,14 +13,14 @@ function signUp() {
             'Content-Type': 'application/json',
             Accept: 'application/json, text/plain, */*',
         },
-        body: JSON.stringify({firstName: firstName, lastName: lastName, email: email, password: password }),
+        body: JSON.stringify({first_name: firstName, last_name: lastName, email: email, password: password }),
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data);
-            localStorage.setItem('token', data.token);
-            localStorage.setItem('isMod', data.isMod);
-            window.location.href = 'http://localhost:8080/views/profile.html';
+            // console.log(data);
+            // localStorage.setItem('token', data.token);
+            // localStorage.setItem('isMod', data.isMod);
+            window.location.href = 'http://localhost:8080/views/login.html';
         });
     return false;
 }
