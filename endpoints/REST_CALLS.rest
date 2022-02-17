@@ -38,6 +38,15 @@ GET http://localhost:8080/profile?userId=62032b37c911458572150e9f
 # }
 
 ###
+GET http://localhost:8080/unaprovedStories
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwidXNlcklkIjoiNjIwMzJiMzdjOTExNDU4NTcyMTUwZTlmIiwiaXNNb2QiOmZhbHNlLCJpYXQiOjE2NDQzNzQ4NTMsImV4cCI6MTY0NDM3ODQ1M30.6zt0Kp3jsxh6ieBOcpHXeTUrdQMOcUfdPaciqZr1Mvw
+# Content-Type: application/json
+
+# {
+#     "userId":"62032b37c911458572150e9f"
+# }
+
+###
 POST http://localhost:8080/auth/changePassword
 Content-Type: application/json
 Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwidXNlcklkIjoiNjIwMzJiMzdjOTExNDU4NTcyMTUwZTlmIiwiaXNNb2QiOmZhbHNlLCJpYXQiOjE2NDQzNzQ4NTMsImV4cCI6MTY0NDM3ODQ1M30.6zt0Kp3jsxh6ieBOcpHXeTUrdQMOcUfdPaciqZr1Mvw

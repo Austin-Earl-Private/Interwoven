@@ -26,3 +26,26 @@ exports.getProfile = (req, res, next) => {
             next(err);
         });
 };
+
+exports.getUnaprovedStories = (req, res, next) => {
+    const userId = req.userId;
+
+    let foundUser;
+    User.findById(userId)
+        .then((user) => {
+            if (!user) {
+                throw new Error('Could not find user, Try again.');
+            }
+            foundUser = user;
+            return Story.find({ creator: user._id, approved: false });
+        })
+        .then((storyList) => {
+            return res.status(200).json({
+                stories: storyList,
+            });
+        })
+        .catch((err) => {
+            err.statusCode = 500;
+            next(err);
+        });
+};
