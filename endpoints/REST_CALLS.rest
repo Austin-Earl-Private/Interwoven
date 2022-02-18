@@ -91,3 +91,16 @@ Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1
     "content":"This is qualiuty cibnnmer",
     "country_code":"United-States"
 }
+
+POST http://localhost:8080/story/deleteStory
+Content-Type: application/json
+Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1haWwuY29tIiwidXNlcklkIjoiNjIwMzJiMzdjOTExNDU4NTcyMTUwZTlmIiwiaXNNb2QiOnRydWUsImlhdCI6MTY0NDU0NjQyMCwiZXhwIjoxNjQ0NTUwMDIwfQ.U7lBx7qi9azbEm0uphiezk3MDF-Ot_SggeazK9Dz0oM
+
+{
+    "title":"Title thing",
+    "content":"This is qualiuty cibnnmer",
+    "country_code":"United-States"
+}
+
+###
+POST http://localost:
