@@ -30,7 +30,8 @@ function populateStories() {
 
             let viewStory = document.createElement("button");
             viewStory.innerHTML = 'View Story'
-            // viewStory.onclick = storyPage(localStorage.getItem("search-results").searchStories)
+            console.log(story)
+            viewStory.addEventListener('click', () => { storyPage(story) })
 
             // Append all the children to the story
             storyElement.appendChild(titleElement);
@@ -42,6 +43,11 @@ function populateStories() {
             storiesElement.appendChild(storyElement);
         }
     }
+}
+
+function storyPage(story) {
+    localStorage.setItem("current-story", JSON.stringify(story))
+    window.location.href = '../views/story.html';
 }
 
 populateStories();
