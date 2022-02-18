@@ -1,59 +1,14 @@
-// <!--
-// *************Map created by Simplemaps.com********************		
-// *************Attribution is highly appreciated!***************
-// *************http://simplemaps.com****************************
 
-// The MIT License (MIT)
-
-// Copyright (c) 2020 Pareto Softare, LLC DBA Simplemaps.com
-
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-
-// -->
-
-
-//Used this to make the options for our dropdown in the form on the profile page
-// var svg = document.getElementById('worldMap');
-// var elements = document.getElementsByClassName("image-path");
-// var ids = '';
-// for(var i=0; i<elements.length; i++){
-//     //<option value="Gabon">Gabon</option>
-//     ids += '<option value="' + elements[i].id + '">' + elements[i].id + '</option>';
-// }
-// console.log(ids);
-
-// var elements = document.getElementsByClassName("image-path");
-// var ids = '';
-// for(var i=0; i<elements.length; i++){
-//     //<option value="Gabon">Gabon</option>
-//     ids += '{"countryId":"' + elements[i].id + '","countryName":"' + elements[i].id + '"},';
-// }
-// console.log(ids);
 
 import ids from "../countries.js";
-import searchResults from "../constants.js"
+
 document.addEventListener('click', doThing);
+let searchResults = {}
 
 function doThing(event) {
 
     let id;
-    if (event.srcElement.id == ""){
+    if (event.srcElement.id == "" && event.srcElement.parentElement !== null) {
         //if no id, go to parent element and get that id
         id = event.srcElement.parentElement.id;
     }
@@ -62,52 +17,37 @@ function doThing(event) {
     }
 
     ids.find((currentId) => {
-        if(currentId.countryId == id) {
+        if (currentId.countryId == id && id !== null) {
             let searchURL = `http://localhost:8080/search?country=${id}`;
             fetch(searchURL)
-            .then((res) => {
-               return  res.json();
-            })
-            .then((body) => {
-                console.log(body)
-                searchResults = body
-            });
+                .then((res) => {
+                    return res.json();
+                })
+                .then((body) => {
+                    console.log(body)
+                    searchResults = body
 
-            window.location.href = '../views/results.html';
+                }).then(() => { window.location.href = '../views/results.html'; });
             // Now we just do a fetch call with query parameters or change it to post or... yeah
         }
     });
 }
-
-//change the fill color of the path if there are stories from that country
-//populate the next page using the country reaching back to the database
-
-
+if (document.getElementById('searchButton')) {
+    document.getElementById('searchButton').addEventListener('click', search);
+}
 
 
-// document.addEventListener('click', doThing);
+function search() {
+    let country = document.getElementById("country").value;
+    let searchURL = `http://localhost:8080/search?country=${country}`;
+    fetch(searchURL)
+        .then((res) => {
+            return res.json();
+        })
+        .then((body) => {
+            searchResults = body
+        }).then(() => { window.location.href = '../views/results.html'; });
+    console.log(searchResults)
+    // Now we just do a fetch call with query parameters or change it to post or... yeah
+}
 
-// async function doThing(event) {
-//     let inputId = await event.srcElement.id;
-//     setTimeout(function () {
-//         if (inputId == "") {
-//             console.log(inputId.parent);
-//         }
-//         else {
-//             for (const id in ids) {
-//                 const countryId = ids[id].countryId;
-    
-                
-                
-//                 if(countryId == inputId) {
-//                     // We have a valid country ID
-//                     console.log(inputId);
-//                 }
-//             }
-//         }
-//     }, 1000);
-    
-// }
-
-// //change the fill color of the path if there are stories from that country
-// //populate the next page using the country reaching back to the database
