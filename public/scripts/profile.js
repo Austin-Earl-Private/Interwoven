@@ -1,4 +1,4 @@
-// const countries = require('../countries');
+
 const getPublicProfile = async () => {
     fetch(
         `http://localhost:8080/profile?userId=${window.localStorage.getItem(
@@ -17,6 +17,12 @@ const getPublicProfile = async () => {
             );
             getprofileUnapprovedStories(data.first_name + ' ' + data.last_name);
         });
+    // fetch(
+    //     `http://localhost:8080/story?creator=62032b37c911458572150e9f`
+    // ).then((res) => res.json())
+    //     .then((data) => {
+    //         userStory = data;
+    //     })
     // const data = await apiFetch('http://localhost:8080/interwoven');
     // displayAllData(data);
 };
@@ -31,7 +37,7 @@ function getprofileUnapprovedStories(name) {
         .then((data) => {
             console.log(data);
 
-            displayApprovedStories(data.stories, name);
+            displayUnapprovedStories(data.stories, name);
         });
 }
 
@@ -50,7 +56,7 @@ function getUnaprovedStories() {
             // displayApprovedStories(data.stories, name);
         });
 }
-getUnaprovedStories();
+// getUnaprovedStories();
 
 function displayFirstName(name) {
     const span = document.querySelector('#userFirstname');
@@ -73,7 +79,7 @@ function displayAllData(data) {
 function displayApprovedStories(storyList) {
     displayStoryList(storyList, '#approvedStories', false);
 }
-function displayApprovedStories(storyList) {
+function displayUnapprovedStories(storyList) {
     displayStoryList(storyList, '#unapprovedStories', false);
 }
 function displayStoriesToBeApproved(storyList) {
@@ -376,7 +382,7 @@ if (story === null) {
     `;
 } else if (story) {
     //display story delete options
-    document.getElementById('profileSpecifics').innerHTML = ` 
+    document.getElementById('profileSpecifics').innerHTML = `
     <div class="storyForApproval">
         <div>
             <h3>Name: ${userName}</h3>

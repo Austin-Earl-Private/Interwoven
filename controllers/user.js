@@ -30,6 +30,20 @@ exports.getProfile = (req, res, next) => {
         });
 };
 
+exports.userStory = (req, res, next) => {
+    // let country = req.body.country;
+    let creator1 = req.query.creator;
+    console.log(creator1);
+
+    Story.find({ creator: creator1 }).then((stories) => {
+        console.log(stories)
+        res.status(200).json({
+            searchStories: stories
+        });
+    });
+};
+
+
 exports.getUnaprovedStories = (req, res, next) => {
     const userId = req.userId;
 

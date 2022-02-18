@@ -47,9 +47,9 @@
 // console.log(ids);
 
 import ids from "../countries.js";
-
+import searchResults from "../constants.js"
 document.addEventListener('click', doThing);
-let countryResults
+
 function doThing(event) {
 
     let id;
@@ -70,8 +70,7 @@ function doThing(event) {
             })
             .then((body) => {
                 console.log(body)
-                const countryStories = body
-                countryResults = body
+                searchResults = body
             });
 
             window.location.href = '../views/results.html';

@@ -7,27 +7,23 @@
 //if there aren't any search results, tell the client that and go back to the search page or offer other suggestions.
 
 // prevent default form submission
+import searchResults from '../constants.js'
 
-const searchResults = fetch().then((res) => {
-    res.json()
-    .then((result) => {
-        let stories = document.getElementsByClassName("searchResults")[0];
+function search() {
 
-        for (const element in result) {
-            if (Object.hasOwnProperty.call(result, element)) {
-                const story = result[element];
-                
-                let myDiv = document.createElement("div");
-                myDiv.style.padding = "20px";
-                myDiv.innerHTML = story.body;
+    let country = document.getElementById("country").value;
+    let searchURL = `http://localhost:8080/search?country=${country}`;
+    fetch(searchURL)
+        .then((res) => {
+            return res.json();
+        })
+        .then((body) => {
+            console.log(body);
+            searchResults = body;
+        });
 
-                // title
-                // img
-                // tags
-                // 
+    window.location.href = '../views/results.html';
+    // Now we just do a fetch call with query parameters or change it to post or... yeah
+}
 
-                stories.appendChild(myDiv);
-            }
-        }
-    });
-});
+
