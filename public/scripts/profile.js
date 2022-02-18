@@ -129,7 +129,7 @@ function displayStoryList(storyList, elementIdString, isForAprroval) {
         const countryHeader = document.createElement('h3');
         const countrySpan = document.createElement('span');
         const storyContent = document.createElement('p');
-        countrySpan.textContent = 'USSUSUSUSUS';
+        countrySpan.textContent = story.country_code;
         nameSpan.textContent =
             story.creator.first_name + ' ' + story.creator.last_name;
         nameHeader.textContent = 'Name: ';
