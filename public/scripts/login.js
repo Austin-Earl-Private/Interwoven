@@ -1,9 +1,6 @@
+const { status } = require("express/lib/response");
+
 function onlogin() {
-    // e.preventDefault();
-    // const form = document.querySelector('#login');
-    // const inputs = form.elements;
-    // const email = inputs['email'];
-    // const password = inputs['password'];
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
 
@@ -17,7 +14,10 @@ function onlogin() {
         },
         body: JSON.stringify({ email: email, password: password }),
     })
-        .then((response) => response.json())
+    // .then((response) => {
+    //     console.log(response.status);
+    // })
+        .then((response) => response.json())        
         .then((data) => {
             console.log(data);
             localStorage.setItem('token', data.token);
