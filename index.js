@@ -9,7 +9,7 @@ const storyRoutes = require('./routes/story');
 const userRoutes = require('./routes/user');
 const mongoose = require('mongoose');
 const app = express();
-
+const PORT = process.env.PORT || 8080;
 const corsOptions = {
     origin: '*',
     optionsSuccessStatus: 200,
@@ -37,7 +37,7 @@ mongoose
     )
     .then((res) => {
         console.log('Starting system');
-        app.listen(8080);
+        app.listen(PORT);
     })
     .catch((err) => {
         console.log(err);
