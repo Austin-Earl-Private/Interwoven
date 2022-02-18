@@ -6,6 +6,11 @@ const varList = require('../utils/variables');
 exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+    if (!email || !password) {
+        const error = new Error('Can not have null values');
+        error.statusCode = 401;
+        throw error;
+    }
 
     let foundUser;
     User.findOne({ email: email })
@@ -36,7 +41,7 @@ exports.login = (req, res, next) => {
             );
 
             res.status(200).json({
-                message: 'Logged in succefully.',
+                message: 'Logged in successfully.',
                 userId: foundUser._id.toString(),
                 isMod: foundUser.isMod,
                 token: token,
@@ -53,7 +58,9 @@ exports.login = (req, res, next) => {
 
 exports.signUp = (req, res, next) => {
     const email = req.body.email;
-    const name = req.body.name;
+    const fname = req.body.first_name;
+    const lname = req.body.last_name;
+
     const password = req.body.password;
     bcrypt
         .hash(password, 12)
@@ -61,7 +68,8 @@ exports.signUp = (req, res, next) => {
             console.log(hash);
             const user = new User({
                 email: email,
-                name: name,
+                first_name: fname,
+                last_name: lname,
                 password: hash,
             });
             console.log('herer');

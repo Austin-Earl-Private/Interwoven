@@ -11,18 +11,15 @@ const userSchema = new Schema(
             type: String,
             required: true,
         },
-        name: {
+        first_name: {
+            type: String,
+            required: true,
+        },
+        last_name: {
             type: String,
             required: true,
         },
         isMod: { type: Boolean, default: false },
-
-        // stories: [
-        //     {
-        //         type: Schema.Types.ObjectId,
-        //         ref: 'Story',
-        //     },
-        // ],
     },
     { timestamps: true }
 );

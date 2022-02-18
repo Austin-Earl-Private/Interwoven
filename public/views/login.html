@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interwoven | </title>
     <link rel="stylesheet" href="../css/main.css">
+   
+   
 </head>
 <body>
     <header>
@@ -15,18 +17,22 @@
             <div>
                 <a href="home.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="login.html" class="active">Login</a>
-                <a href="signup.html">Sign Up</a>
+                <a id="logIn" href="login.html" class="active">Login</a>
+                <a id="signUp"href="signup.html">Sign Up</a>
             </div>
         </nav>
     </header>
     <div class="form-page">
         <h1>Log In</h1>
-        <form>
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <input id="submitButton" type="submit">
-        </form>
+        <script src="../scripts/login.js"></script>
+        <div id="error"></div>
+        <div id="login" class="inputs">
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <input id="submitButton" type="submit" onclick="onlogin()">
+        </div>
     </div>
+
+<script src="../scripts/islogin.js"></script>
 </body>
 </html>

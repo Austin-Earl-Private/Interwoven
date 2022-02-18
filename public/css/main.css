@@ -126,6 +126,10 @@ nav div {
   margin-right: auto;
 }
 
+.form-page .inputs {
+  text-align: center;
+}
+
 .form-page h1, .form-page p {
   text-align: center;
 }
@@ -202,7 +206,7 @@ nav div {
   margin-left: 1em;
 }
 
-.storyForApproval {
+.storyForApproval, .stories {
   border: 1px solid #DADDD8;
   max-width: 800px;
   margin-left: auto;

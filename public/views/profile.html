@@ -7,17 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interwoven | Profile</title>
     <link rel="stylesheet" href="../css/main.css">
+    
 </head>
 
 <body>
+    <script src="../scripts/profile.js"></script>
     <header>
         <nav>
             <img class="logo-2" src="../images/logo-2.png" alt="Interwoven Logo">
             <div>
                 <a href="home.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="login.html">Login</a>
-                <a href="signup.html" class="active">Sign Up</a>
+                <a id="logIn" href="login.html">Login</a>
+                <a id="signUp" href="signup.html" class="active">Sign Up</a>
             </div>
         </nav>
     </header>
@@ -37,10 +39,16 @@
                 </ul>
             </div>
             </div> -->
-    </main>
+    
+    <div id="approvedStories" class="stories">
 
-    <div class="storyForApproval">
-        <div>
+    </div>
+    <div id="unapprovedStories" class="stories">
+
+    </div>
+    <div id="storyForApproval"class="storyForApproval">
+
+        <!-- <div>
             <h3>Name: <span id="storyUser">Sonila Mohammadi</span></h3>
             <h3>Country: <span id="storyCountry">Afghanistan</span></h3>
         </div>
@@ -92,12 +100,14 @@
         <p>We are now in the United States, but our future is unsure. I want to be with my family. I want to see my
             Mother come to America. I need help to be reunited with my family, but it feels impossible. We are alone and
             we miss our family. </p>
-            <input id="submitButton" type="submit" value="Approve Post">
+            <input id="submitButton" type="submit" value="Approve Post"> -->
     </div>
-</body>
+</main>
 <footer>
     <script src="../scripts/profile.js"></script>
     <!-- <script src="../scripts/tags.js"></script> -->
+    <script src="../scripts/islogin.js"></script>
 </footer>
+</body>
 
 </html>
