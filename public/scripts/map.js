@@ -1,12 +1,19 @@
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
+// function declarations and imports at the top
 
+// function calls at the bottom
+
+// This file sets a general document listener that fetches a set of stories based on a country id and saves those
+// stories to local storage under the key "search-results"
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
 
 import ids from "../countries.js";
 
-document.addEventListener('click', doThing);
-let searchResults = {}
-
 function doThing(event) {
-
     let id;
     if (event.srcElement.id == "" && event.srcElement.parentElement !== null) {
         //if no id, go to parent element and get that id
@@ -15,39 +22,34 @@ function doThing(event) {
     else {
         id = event.srcElement.id
     }
-
     ids.find((currentId) => {
         if (currentId.countryId == id && id !== null) {
             let searchURL = `http://localhost:8080/search?country=${id}`;
             fetch(searchURL)
-                .then((res) => {
-                    return res.json();
-                })
-                .then((body) => {
-                    console.log(body)
-                    searchResults = body
-
-                }).then(() => { window.location.href = '../views/results.html'; });
-            // Now we just do a fetch call with query parameters or change it to post or... yeah
+            .then((res) => res.json())
+            .then((body) => {
+                localStorage.setItem("search-results", JSON.stringify(body));
+            }).then(() => { window.location.href = '../views/results.html'; });
         }
     });
 }
-if (document.getElementById('searchButton')) {
-    document.getElementById('searchButton').addEventListener('click', search);
-}
-
 
 function search() {
     let country = document.getElementById("country").value;
     let searchURL = `http://localhost:8080/search?country=${country}`;
     fetch(searchURL)
-        .then((res) => {
-            return res.json();
-        })
+        .then((res) => res.json())
         .then((body) => {
-            searchResults = body
+            localStorage.setItem("search-results", JSON.stringify(body));
         }).then(() => { window.location.href = '../views/results.html'; });
-    console.log(searchResults)
-    // Now we just do a fetch call with query parameters or change it to post or... yeah
 }
 
+//*****************************************************************************
+//*****************************************************************************
+//*****************************************************************************
+
+document.addEventListener('click', doThing);
+
+if (document.getElementById('searchButton')) {
+    document.getElementById('searchButton').addEventListener('click', search);
+}
