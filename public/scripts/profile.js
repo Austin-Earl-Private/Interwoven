@@ -16,7 +16,10 @@ const getPublicProfile = async () => {
                 data.first_name + ' ' + data.last_name
             );
             const ismod = window.localStorage.getItem('isMod');
-            getprofileUnapprovedStories(data.first_name + ' ' + data.last_name);
+            // getprofileUnapprovedStories(data.first_name + ' ' + data.last_name);
+            if (ismod === 'true') {
+                getUnaprovedStories();
+            }
         });
     // fetch(
     //     `${location.protocol}//localhost:8080/story?creator=62032b37c911458572150e9f`
