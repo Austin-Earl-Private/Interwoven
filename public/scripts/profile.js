@@ -1,7 +1,6 @@
-
 const getPublicProfile = async () => {
     fetch(
-        `http://localhost:8080/profile?userId=${window.localStorage.getItem(
+        `http://${location.host}/profile?userId=${window.localStorage.getItem(
             'userId'
         )}`
     )
@@ -28,7 +27,7 @@ const getPublicProfile = async () => {
 };
 
 function getprofileUnapprovedStories(name) {
-    fetch(`http://localhost:8080/unaprovedStories`, {
+    fetch(`http://${location.host}/unaprovedStories`, {
         headers: {
             Authorization: `Bear ${window.localStorage.getItem('token')}`,
         },
@@ -44,7 +43,7 @@ function getprofileUnapprovedStories(name) {
 getPublicProfile();
 
 function getUnaprovedStories() {
-    fetch(`http://localhost:8080/admin/getNonApprovedPosts`, {
+    fetch(`http://${location.host}/admin/getNonApprovedPosts`, {
         headers: {
             Authorization: `Bear ${window.localStorage.getItem('token')}`,
         },
@@ -88,7 +87,7 @@ function displayStoriesToBeApproved(storyList) {
 
 function approveStory(storyId) {
     console.log('Approving story for ' + storyId);
-    fetch(`http://localhost:8080/admin/approveStory`, {
+    fetch(`http://${location.host}/admin/approveStory`, {
         method: 'POST',
         headers: {
             Authorization: `Bear ${window.localStorage.getItem('token')}`,

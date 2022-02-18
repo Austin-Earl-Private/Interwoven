@@ -24,19 +24,19 @@ function doThing(event) {
     }
     ids.find((currentId) => {
         if (currentId.countryId == id && id !== null) {
-            let searchURL = `http://localhost:8080/search?country=${id}`;
+            let searchURL = `http://${location.host}/search?country=${id}`;
             fetch(searchURL)
-            .then((res) => res.json())
-            .then((body) => {
-                localStorage.setItem("search-results", JSON.stringify(body));
-            }).then(() => { window.location.href = '../views/results.html'; });
+                .then((res) => res.json())
+                .then((body) => {
+                    localStorage.setItem("search-results", JSON.stringify(body));
+                }).then(() => { window.location.href = '../views/results.html'; });
         }
     });
 }
 
 function search() {
     let country = document.getElementById("country").value;
-    let searchURL = `http://localhost:8080/search?country=${country}`;
+    let searchURL = `http://${location.host}/search?country=${country}`;
     fetch(searchURL)
         .then((res) => res.json())
         .then((body) => {

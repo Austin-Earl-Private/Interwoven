@@ -1,4 +1,4 @@
-const { status } = require("express/lib/response");
+// const { status } = require("express/lib/response");
 
 function onlogin() {
     const email = document.querySelector('#email').value;
@@ -6,7 +6,7 @@ function onlogin() {
 
     const localStorage = window.localStorage;
 
-    fetch('http://localhost:8080/auth/login', {
+    fetch(`http://${location.host}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -14,17 +14,24 @@ function onlogin() {
         },
         body: JSON.stringify({ email: email, password: password }),
     })
-    // .then((response) => {
-    //     console.log(response.status);
-    // })
-        .then((response) => response.json())        
+
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Something went wrong');
+            }
+        })
         .then((data) => {
             console.log(data);
             localStorage.setItem('token', data.token);
             localStorage.setItem('isMod', data.isMod);
             localStorage.setItem('userId', data.userId);
             localStorage.setItem('isLoggedin', true);
-            window.location.href = 'http://localhost:8080/views/profile.html';
+            window.location.href = `http://${location.host}/views/profile.html`;
+        }).catch((err) => {
+            document.getElementById('error').innerHTML = 'Username and Password do not match!'
+            console.log(err)
         });
     return false;
 }

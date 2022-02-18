@@ -6,7 +6,7 @@ const varList = require('../utils/variables');
 exports.login = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
-    if (!email || !password) {
+    if (!email && !password) {
         const error = new Error('Can not have null values');
         error.statusCode = 401;
         throw error;
@@ -21,6 +21,7 @@ exports.login = (req, res, next) => {
                 throw error;
             }
             foundUser = user;
+            console.log('login happens')
             return bcrypt.compare(password, user.password);
         })
         .then((isEqual) => {

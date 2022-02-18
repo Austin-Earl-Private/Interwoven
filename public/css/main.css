@@ -158,10 +158,11 @@ nav div {
 }
 
 #search-results {
-  border-radius: 20px;
+  border-radius: 2rem;
   display: grid;
-  gap: 10px;
-  padding: 20px;
+  gap: 1rem;
+  padding: 2rem;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .story {

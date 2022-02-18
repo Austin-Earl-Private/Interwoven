@@ -5,7 +5,7 @@ function populateStories() {
 
     let stories = JSON.parse(localStorage.getItem("search-results")).searchStories;
 
-    if(stories.length == 0) {
+    if (stories.length == 0) {
         // This happens when a country with no stories is clicked
         document.getElementById("search-results").innerHTML = "There are no stories associated with this country yet... I don't know, that's what Tanner said anyway."
     } else {
@@ -21,15 +21,22 @@ function populateStories() {
             let titleElement = document.createElement("h2");
             titleElement.classList.add("storyTitle");
             titleElement.innerHTML = story.title;
-            
+
             // Create content element
             let paragraph = document.createElement("p");
+
             paragraph.classList.add("storyContent");
             paragraph.innerHTML = story.content;
+
+            let viewStory = document.createElement("button");
+            viewStory.innerHTML = 'View Story'
+            // viewStory.onclick = storyPage(localStorage.getItem("search-results").searchStories)
 
             // Append all the children to the story
             storyElement.appendChild(titleElement);
             storyElement.appendChild(paragraph);
+            storyElement.appendChild(viewStory)
+
 
             // Append the story to the stories list
             storiesElement.appendChild(storyElement);
