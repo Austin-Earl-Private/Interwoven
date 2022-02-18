@@ -278,4 +278,11 @@ nav div {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
+
+.search {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 /*# sourceMappingURL=main.css.map */
