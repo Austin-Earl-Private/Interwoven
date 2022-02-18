@@ -11,13 +11,13 @@ function islogin() {
         //change login to sign out
         const login = document.querySelector("#logIn");
         login.textContent = "Sign Out";
-        login.href = `http://${location.host}/views/home.html`;
+        login.href = `${location.protocol}//${location.host}/views/home.html`;
         login.onclick = clear;
 
         //change sign up to profile
         const signup = document.querySelector("#signUp");
         signup.textContent = "Profile";
-        signup.href = `http://${location.host}/views/profile.html`;
+        signup.href = `${location.protocol}//${location.host}/views/profile.html`;
         // login.onclick = clear;
 
     }
@@ -32,7 +32,7 @@ function clear() {
     window.localStorage.clear;
     // window.localStorage.setItem("isLoggedin", null);
     // console.log(window.localStorage.getItem("isLoggedin") + "= isLoggedin");
-    window.location.href = `http://${location.host}/views/home.html`;
+    window.location.href = `${location.protocol}//${location.host}/views/home.html`;
 }
 
 islogin();

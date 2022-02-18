@@ -24,7 +24,7 @@ function doThing(event) {
     }
     ids.find((currentId) => {
         if (currentId.countryId == id && id !== null) {
-            let searchURL = `http://${location.host}/search?country=${id}`;
+            let searchURL = `${location.protocol}//${location.host}/search?country=${id}`;
             fetch(searchURL)
                 .then((res) => res.json())
                 .then((body) => {
@@ -36,7 +36,7 @@ function doThing(event) {
 
 function search() {
     let country = document.getElementById("country").value;
-    let searchURL = `http://${location.host}/search?country=${country}`;
+    let searchURL = `${location.protocol}//${location.host}/search?country=${country}`;
     fetch(searchURL)
         .then((res) => res.json())
         .then((body) => {

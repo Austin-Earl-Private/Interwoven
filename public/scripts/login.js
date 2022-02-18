@@ -6,7 +6,7 @@ function onlogin() {
 
     const localStorage = window.localStorage;
 
-    fetch(`http://${location.host}/auth/login`, {
+    fetch(`${location.protocol}//${location.host}/auth/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ function onlogin() {
             localStorage.setItem('isMod', data.isMod);
             localStorage.setItem('userId', data.userId);
             localStorage.setItem('isLoggedin', true);
-            window.location.href = `http://${location.host}/views/profile.html`;
+            window.location.href = `${location.protocol}//${location.host}/views/profile.html`;
         }).catch((err) => {
             document.getElementById('error').innerHTML = 'Username and Password do not match!'
             console.log(err)

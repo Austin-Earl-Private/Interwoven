@@ -1,6 +1,6 @@
 const getPublicProfile = async () => {
     fetch(
-        `http://${location.host}/profile?userId=${window.localStorage.getItem(
+        `${location.protocol}//${location.host}/profile?userId=${window.localStorage.getItem(
             'userId'
         )}`
     )
@@ -17,17 +17,17 @@ const getPublicProfile = async () => {
             getprofileUnapprovedStories(data.first_name + ' ' + data.last_name);
         });
     // fetch(
-    //     `http://localhost:8080/story?creator=62032b37c911458572150e9f`
+    //     `${location.protocol}//localhost:8080/story?creator=62032b37c911458572150e9f`
     // ).then((res) => res.json())
     //     .then((data) => {
     //         userStory = data;
     //     })
-    // const data = await apiFetch('http://localhost:8080/interwoven');
+    // const data = await apiFetch('${location.protocol}//localhost:8080/interwoven');
     // displayAllData(data);
 };
 
 function getprofileUnapprovedStories(name) {
-    fetch(`http://${location.host}/unaprovedStories`, {
+    fetch(`${location.protocol}//${location.host}/unaprovedStories`, {
         headers: {
             Authorization: `Bear ${window.localStorage.getItem('token')}`,
         },
@@ -43,7 +43,7 @@ function getprofileUnapprovedStories(name) {
 getPublicProfile();
 
 function getUnaprovedStories() {
-    fetch(`http://${location.host}/admin/getNonApprovedPosts`, {
+    fetch(`${location.protocol}//${location.host}/admin/getNonApprovedPosts`, {
         headers: {
             Authorization: `Bear ${window.localStorage.getItem('token')}`,
         },
@@ -87,7 +87,7 @@ function displayStoriesToBeApproved(storyList) {
 
 function approveStory(storyId) {
     console.log('Approving story for ' + storyId);
-    fetch(`http://${location.host}/admin/approveStory`, {
+    fetch(`${location.protocol}//${location.host}/admin/approveStory`, {
         method: 'POST',
         headers: {
             Authorization: `Bear ${window.localStorage.getItem('token')}`,

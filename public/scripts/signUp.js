@@ -7,7 +7,7 @@ function signUp() {
 
     const localStorage = window.localStorage;
 
-    fetch(`http://${location.host}/auth/signUp`, {
+    fetch(`${location.protocol}//${location.host}/auth/signUp`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ function signUp() {
             // console.log(data);
             // localStorage.setItem('token', data.token);
             // localStorage.setItem('isMod', data.isMod);
-            window.location.href = `http://${location.host}/views/login.html`;
+            window.location.href = `${location.protocol}//${location.host}/views/login.html`;
         });
     return false;
 }
