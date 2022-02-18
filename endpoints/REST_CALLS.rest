@@ -57,12 +57,8 @@ Authorization: Bear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAZW1
 
 ###
 
-POST http://localhost:8080/search
+GET http://localhost:8080/search?country=USA
 Content-Type: application/json
-
-{
-    
-}
 
 ###
 POST http://localhost:8080/admin/getNonApprovedPosts
